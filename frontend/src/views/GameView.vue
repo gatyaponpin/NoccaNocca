@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { createGame, type GameController } from '@/services/game'
+import { createGame, type GameController } from '../services/game'
 
 const mountRef = ref<HTMLDivElement | null>(null)
 let game: GameController | null = null

@@ -66,7 +66,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, computed } from 'vue'
-import { joinRoom, onRoomJoined, onRoomError } from '@/services/socket'
+import { joinRoom, onRoomJoined, onRoomError } from '../services/socket'
 
 const emit = defineEmits<{ (e: 'enter'): void }>()
 

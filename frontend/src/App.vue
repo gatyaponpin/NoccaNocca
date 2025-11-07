@@ -8,12 +8,6 @@
             :is="current === 'entrance' ? EntranceView : GameView"
             @enter="handleEnter"
           />
-          <template v-if="current === 'game'">
-            <div class="d-flex flex-column align-center justify-center fill-area">
-              <h2 class="text-h6 font-weight-bold mb-2">ゲーム画面（準備中）</h2>
-              <div class="text-body-2 opacity-70">次のステップでThree.jsの盤面を表示します</div>
-            </div>
-          </template>
         </v-main>
       </div>
     </div>
@@ -35,7 +29,7 @@
 <style scoped>
   .app-root {
     width: 100vw;
-    height: 100dvh;           /* モバイルのアドレスバー高変動に強い */
+    height: 100dvh;
     display: grid;
     place-items: center;
     background: #b6b6bd;

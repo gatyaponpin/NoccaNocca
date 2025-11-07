@@ -1,8 +1,8 @@
 import { COLS, ROWS, STACK_MAX } from './constants';
-import type { BoardState, Piece, Cell } from '@/types/game';
+import type { BoardState, Piece, Cell } from '../../types/game';
     
-export function inBoard(c: number, r: number) {
-  return c >= 0 && c < COLS && r >= 0 && r < ROWS;
+export function inBoard(col: number, row: number) {
+  return col >= 0 && col < COLS && row >= 0 && row < ROWS;
 }
 
 export function createInitialState(): BoardState {
@@ -43,7 +43,7 @@ export function normalizeAll(state: BoardState): BoardState {
 export function legalMoves(state: BoardState, piece: Piece): Cell[] {
   const out: Cell[] = [];
   // 移動先への移動量
-  const directions: [number, number][] = [[1, 0], [-1, 0], [0, 1], [0, -1],];
+  const directions: [number, number][] = [[1,  0], [-1,  0], [0,  1], [0, -1], [1,  1], [1, -1], [-1,  1], [-1, -1]];
 
   for (const [deltaCol, deltaRow] of directions) {
     const nextCol = piece.col + deltaCol;

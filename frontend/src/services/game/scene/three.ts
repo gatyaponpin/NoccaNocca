@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import { COLS, ROWS, CELL, BOARD_H, GRID_LIFT, PIECE_H, PIECE_SIZE, PIECE_RADIUS, PIECE_LIFT, STACK_GAP } from '../constants'
-import type { BoardState } from '@/types/game'
+import type { BoardState } from '../../../types/game'
 
 const HALF_W = (COLS * CELL) / 2;
 const HALF_H = (ROWS * CELL) / 2;
@@ -17,9 +17,9 @@ export function pieceCenterY(level = 0) {
   return BOARD_H/2 + PIECE_LIFT + (PIECE_H/2) + level * (PIECE_H + STACK_GAP);
 }
 export function markerYAboveTop(topLevel?: number) {
-  if (topLevel == null) return BOARD_H/2 + GRID_LIFT + 0.01;         // 空マス
+  if (topLevel == null) return BOARD_H/2 + GRID_LIFT + 0.01; // 空マス
   const topSurface = pieceCenterY(topLevel) + (PIECE_H/2);
-  return topSurface + 0.02;                                          // ほんの少し上
+  return topSurface + 0.02; // ほんの少し上
 }
 
 export class BoardScene {
