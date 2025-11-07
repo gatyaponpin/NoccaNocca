@@ -6,15 +6,11 @@ import path from 'path'
 export default defineConfig({
   plugins: [
     vue(),
-    (vuetify as any)({ autoImport: true }),
+    vuetify({ autoImport: true }),
   ],
-  resolve: {
+   resolve: {
     alias: {
-    '@': path.resolve(__dirname, 'src'),
-    },
-  },
-  server: {
-    port: 5173,
-    open: true
+      '@': path.resolve(__dirname, './src')
     }
+  }
 })

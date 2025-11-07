@@ -22,8 +22,8 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import EntranceView from '@/views/EntranceView.vue'
-  import GameView from '@/views/GameView.vue'
+  import EntranceView from './views/EntranceView.vue'
+  import GameView from './views/GameView.vue'
 
   const current = ref<'entrance' | 'game'>('game')
   function handleEnter() {
