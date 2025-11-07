@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import { COLS, ROWS, CELL, BOARD_H, GRID_LIFT, PIECE_H, PIECE_SIZE, PIECE_RADIUS, PIECE_LIFT, STACK_GAP } from '../constants'
-import type { BoardState } from '../types'
+import type { BoardState } from '@/types/game'
 
 const HALF_W = (COLS * CELL) / 2;
 const HALF_H = (ROWS * CELL) / 2;

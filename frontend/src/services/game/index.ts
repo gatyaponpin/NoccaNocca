@@ -1,4 +1,4 @@
-import type { BoardState } from './types'
+import type { BoardState } from '@/types/game'
 import { createInitialState } from './state'
 import { BoardScene } from './scene/three'
 import { Interaction } from './input/interaction'

@@ -1,6 +1,6 @@
 import { COLS, ROWS, STACK_MAX } from './constants';
-import type { BoardState, Piece, Cell } from './types';
-
+import type { BoardState, Piece, Cell } from '@/types/game';
+    
 export function inBoard(c: number, r: number) {
   return c >= 0 && c < COLS && r >= 0 && r < ROWS;
 }
@@ -42,14 +42,20 @@ export function normalizeAll(state: BoardState): BoardState {
 /** 合法手：上下左右1マス。先のセルのスタック数 < STACK_MAX ならOK */
 export function legalMoves(state: BoardState, piece: Piece): Cell[] {
   const out: Cell[] = [];
-  const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
-  for (const [dc, dr] of dirs) {
-    const c = piece.col + dc, r = piece.row + dr;
-    if (!inBoard(c, r)) continue;
-    const stackLen = getStackAt(state, c, r).length;
+  // 移動先への移動量
+  const directions: [number, number][] = [[1, 0], [-1, 0], [0, 1], [0, -1],];
+
+  for (const [deltaCol, deltaRow] of directions) {
+    const nextCol = piece.col + deltaCol;
+    const nextRow = piece.row + deltaRow;
+
+    if (!inBoard(nextCol, nextRow)) continue;
+    const stackLen = getStackAt(state, nextCol, nextRow).length;
     if (stackLen >= STACK_MAX) continue;
-    out.push({ col: c, row: r });
+
+    out.push({ col: nextCol, row: nextRow });
   }
+
   return out;
 }
 

@@ -1,31 +1,23 @@
 export type PlayerColor = 'WHITE' | 'BLACK'
 
+export type Color = 'WHITE' | 'BLACK';
 
-export interface Cell {
-x: number
-y: number
+export interface Cell { col: number; row: number; }
+
+export interface Piece {
+  id: string;
+  color: Color;
+  col: number;
+  row: number;
+  level?: number;
 }
 
-
-export interface StackPiece {
-id: string
-owner: PlayerColor
+export interface BoardState {
+  pieces: Piece[];
 }
 
-
-export interface MoveMessage {
-type: 'move'
-from: Cell
-to: Cell
+export interface MoveAnim {
+  id: string;
+  from: { x: number; y: number; z: number };
+  to:   { x: number; y: number; z: number };
 }
-
-
-export interface JoinMessage {
-type: 'join'
-roomId: string
-}
-
-
-export type ServerEvent =
-| { type: 'state'; board: string } // まずは雑に文字列、後で詳細化
-| { type: 'joined'; roomId: string }

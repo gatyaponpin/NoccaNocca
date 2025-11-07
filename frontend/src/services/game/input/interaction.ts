@@ -1,8 +1,7 @@
 import * as THREE from 'three'
-import type { BoardState, Piece } from '../types'
+import type { BoardState, Piece } from '@/types/game'
 import { legalMoves, movePiece, topPieceAt } from '../state'
-import { BoardScene, cellToWorld, markerYAboveTop } from '../scene/three'
-import { COLS, ROWS } from '../constants'
+import { BoardScene, markerYAboveTop } from '../scene/three'
 
 export class Interaction {
   private ray = new THREE.Raycaster();
@@ -40,7 +39,7 @@ export class Interaction {
 
     // 1) マーカーヒット（優先）
     const markerHits = this.ray.intersectObjects(this.scene.markers, false);
-    if (markerHits.length && this.selected) {
+    if (markerHits[0] && this.selected) {
       const obj = markerHits[0].object as THREE.Mesh
       const { col, row } = obj.userData as { col: number; row: number }
       const ok = movePiece(this.state, this.selected.id, { col, row })
@@ -56,7 +55,7 @@ export class Interaction {
     // 2) 駒ヒット
     const pieceMeshes = [...this.scene.meshes.values()];
     const hits = this.ray.intersectObjects(pieceMeshes, false);
-    if (hits.length) {
+    if (hits[0]) {
       const mesh = hits[0].object as THREE.Mesh;
       const pieceId: string = mesh.userData.pieceId;
       const piece = this.state.pieces.find(p => p.id === pieceId) || null;
@@ -70,10 +69,10 @@ export class Interaction {
       // 選択切替 & 候補表示
       this.selected = piece;
       this.scene.clearMarkers();
-      for (const c of legalMoves(this.state, piece)) {
-        const topOnDest = topPieceAt(this.state, c.col, c.row);
+      for (const cell of legalMoves(this.state, piece)) {
+        const topOnDest = topPieceAt(this.state, cell.col, cell.row);
         const y = markerYAboveTop(topOnDest?.level);
-        this.scene.addMarkerAt(c.col, c.row, y);
+        this.scene.addMarkerAt(cell.col, cell.row, y);
       }
       return;
     }
