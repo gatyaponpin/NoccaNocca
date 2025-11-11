@@ -67,6 +67,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, computed } from 'vue'
 import { joinRoom, onRoomJoined, onRoomError } from '../services/socket'
+import { randomRoomId } from '../services/room'
 
 const emit = defineEmits<{ (e: 'enter'): void }>()
 
@@ -104,13 +105,6 @@ onUnmounted(() => {
 
 function saveName() {
   localStorage.setItem(STORAGE_KEY, playerName.value.trim())
-}
-
-function randomRoomId(len = 6) {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-  let out = ''
-  for (let i = 0; i < len; i++) out += chars[Math.floor(Math.random() * chars.length)]
-  return out
 }
 
 const nameRules = [

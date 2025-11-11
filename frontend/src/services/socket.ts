@@ -41,7 +41,7 @@ let socket: Socket | null = null
 
 function createSocket(): Socket {
   const url = import.meta.env.VITE_SOCKET_URL as string
-  const s = io(url, {
+  const socket = io(url, {
     transports: ['websocket'],
     autoConnect: true,
     // 必要に応じて:
@@ -50,7 +50,7 @@ function createSocket(): Socket {
     // reconnectionDelay: 500,
   })
 
-  return s
+  return socket
 }
 
 export function getSocket(): Socket {

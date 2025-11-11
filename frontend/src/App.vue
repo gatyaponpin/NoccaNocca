@@ -19,7 +19,7 @@
   import EntranceView from './views/EntranceView.vue'
   import GameView from './views/GameView.vue'
 
-  const current = ref<'entrance' | 'game'>('game')
+  const current = ref<'entrance' | 'game'>('entrance')
   function handleEnter() {
     current.value = 'game'
   }
